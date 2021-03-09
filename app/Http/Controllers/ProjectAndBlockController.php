@@ -18,12 +18,12 @@ class ProjectAndBlockController extends Controller
 
         if(!$project){
         
-            return \response()->json_encode([$response = 'success'=>0,'message'=>'data empty..']);
+            return \response()->json([$response = 'success'=>0,'message'=>'data empty..']);
         }
         else{
         
             $project_block = ProjectBlocksModel::get(['block_name','block_id','project_id']);
-            return \response()->json_encode([$response = 'success'=>1,"block"=>$project_block]);
+            return \response()->json([$response = 'success'=>1,"project_blocks"=>$project_block]);
         }
         
     }
@@ -38,10 +38,10 @@ class ProjectAndBlockController extends Controller
             $block_id = 'block_id';
             $block_name = 'block_name';
             $project_block_list = $project_block::where('project_id','=',$project_id)->get([$block_name->$block_id]);
-            return \response()->json_encode([$response = 'success'=> 1, "project_block"=>$project_block_list]);
+            return \response()->json([$response = 'success'=> 1, "project_block"=>$project_block_list]);
         }
         else{
-            return \response()->json_encode([$response = 'success'=>0 ,'message'=>'This is not valid project']);
+            return \response()->json([$response = 'success'=>0 ,'message'=>'This is not valid project']);
         }
     }
 
@@ -56,10 +56,10 @@ class ProjectAndBlockController extends Controller
 
         
             $all_details = $project_unit::where('block_id','=',$block_id)->get();
-            return \response()->json_encode([$response = 'success'=>1 , 'blocks'=>$all_details]);
+            return \response()->json([$response = 'success'=>1 , 'blocks'=>$all_details]);
         }
         else{
-            return \response()->json_encode([$response = 'success'=>0,'message'=>'Wing not available']);
+            return \response()->json([$response = 'success'=>0,'message'=>'Wing not available']);
         }
     }
     public function ProjectAndBlockListWith(Request $request){
